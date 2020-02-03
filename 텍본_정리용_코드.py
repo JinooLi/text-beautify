@@ -35,8 +35,6 @@ def task(file_name, encoding):  # 기존 텍스트 파일을 편집한 텍스트
             continue
         write_file.write(final_line)  # final_line을 새로운 파일에 넣는다.
         final_line = ''
-        # if line == '\n':
-        #     saved_line += '\n'
 
         if line[0:4] != '    '\
                 and not reg_exp_3.match(line)\
@@ -71,10 +69,11 @@ def text_file_edit(adress_of_file):
             for encoding in ['utf-8', 'utf-16', 'euc-kr', 'cp949', 'ms949']:
                 try:
                     task(adress_of_file + file_name, encoding)
+                    # 원본의 코덱을 알려주고 새로이 바뀐 코덱도 알려준다.
                     print(f'original codec : {encoding} -> new codec : utf-8')
                     break
                 except Exception as e:
-                    print(f"{e}")
+                    print(f"{e}")   # 어떤 에러가 떴었는지 알려준다.
                     continue
 
             # 아예 안되는 경우 failed출력
@@ -84,5 +83,7 @@ def text_file_edit(adress_of_file):
 
 adress = input()
 
-# 주소에 '/'를 더하는 이유는 파일 주소를 입력 했을 떄 각각의 텍스트 파일 이름 앞에 /가 붙지 않아 오류가 발생하였기 때문이다.
+
+# 이 함수는 텍스트 파일이 들어있는 파일의 주소를 받아 그 파일 내에 있는 텍스트 파일을 가지고 위에 써 놓은 기능을 수행하는 함수이다.
 text_file_edit(adress+'/')
+# 주소에 '/'를 더하는 이유는 파일 주소를 입력 했을 떄 각각의 텍스트 파일 이름 앞에 /가 붙지 않아 오류가 발생하였기 때문이다.
