@@ -26,6 +26,9 @@ def task(file_name, encoding):  # 기존 텍스트 파일을 편집한 텍스트
     # 정규 표현식 reg_exp_3는 문장 앞에 0개 이상의 띄어쓰기와 숫자 1~2개 그리고 온점이 있는 형식을 나타낸다.
     reg_exp_3 = re.compile("[ ]*[0-9]{1,2}[.].+")
 
+    # 정규 표현식 reg_exp_4는 엔터만 있는 형식을 나타낸다.
+    reg_exp_4 = re.compile("[ ]*\n")
+
     for line in text_file.readlines():
 
         # 만약 현재 line이 reg_exp을(를) 만족할 경우 finla_line을 새로운 파일에 넣기 전에 이 line을 끝에 붙이고 final_line을 넣는다.
@@ -39,12 +42,12 @@ def task(file_name, encoding):  # 기존 텍스트 파일을 편집한 텍스트
 
         if line[0:4] != '    '\
                 and not reg_exp_3.match(line)\
-                and len(line) > 1\
+                and not reg_exp_4.match(line)\
                 and not reg_exp_2.match(line):
                 # if문 1번째 줄 : 띄어쓰기 4개 이상이 문장의 앞에 있는 경우 목차로 판단하여 그러지 "않을" 경우 다음 조건으로 넘긴다.(목차이면 엔터를 제거하지 않음)
                 # 2번쨰 줄 : 위 조건을 만족한 문장이 reg_exp_3를 만족하지 않으면 다음 조건으로 넘긴다.
-                # 3번째 줄 : 엔터만 있는 문장이 아닌 경우 다음 조건으로 넘긴다.(엔터만 있으면 엔터를 제거하지 않음)
-                # 4번째 줄 : 위 조건들을 만족한 문장이 reg_exp_2를 만족하지 않으면 잘못 엔터 된 것으로 판단, 문장 끝 엔터를 제거한다.
+                # 3번째 줄 : 위 조건을 만족한 문장이 reg_exp_4를 만족하지 않으면 다음 조건으로 넘긴다.(엔터만 있으면 엔터를 제거하지 않음)
+                # 4번째 줄 : 위 조건을 만족한 문장이 reg_exp_2를 만족하지 않으면 잘못 엔터 된 것으로 판단, 문장 끝 엔터를 제거한다.
             saved_line += line[:-1]  # 앞에 오는 문장을 편집(엔터를 제거)하여 saved_line에 넣는다.
 
         else:  # final_line에 편집한 문장을 넣는다.
