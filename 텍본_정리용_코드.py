@@ -6,6 +6,7 @@
 
 import os   # 컴퓨터 내의 파일 입출력을 위해 import함
 import re   # 정규표현식(regular expression)을 사용하려고 import함
+import chardet  # 인코딩을 알아내기 위한 것이다.
 
 
 def task(file_name, encoding):  # 기존 텍스트 파일을 편집한 텍스트를 새로운 텍스트 파일에 집어 넣는 함수.
@@ -66,12 +67,12 @@ def text_file_edit(adress_of_file):
         if ".txt" in file_name:  # 텍스트 파일만 인식한다.
             print(file_name)
             # 한글을 지원하는 코덱들을 하나씩 사용하며, 적용이 되면 그 코덱으로 읽고 안되면 다른 코덱을 적용해 읽는다.
-            for encoding in ['utf-8', 'utf-16', 'euc-kr', 'cp949', 'ms949']:
+            for encoding in ['utf-8', 'utf-16', 'euc-kr', 'cp949', 'iso-2022-kr', 'ksc5601', 'iso-8859-1']:
                 try:
                     task(adress_of_file + file_name, encoding)
                     # 작업이 성공했음을 알리고 원본의 코덱을 알려주고 새로이 바뀐 코덱도 알려준다.
                     print(
-                        f'success! (original codec : {encoding} -> new codec : utf-8)')
+                        f'success!(original codec : {encoding} -> new codec : utf-8)')
                     break
                 except Exception as e:
                     print(f"{e}")   # 어떤 에러가 떴었는지 알려준다.
