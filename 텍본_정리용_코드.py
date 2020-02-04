@@ -69,8 +69,9 @@ def text_file_edit(adress_of_file):
             for encoding in ['utf-8', 'utf-16', 'euc-kr', 'cp949', 'ms949']:
                 try:
                     task(adress_of_file + file_name, encoding)
-                    # 원본의 코덱을 알려주고 새로이 바뀐 코덱도 알려준다.
-                    print(f'original codec : {encoding} -> new codec : utf-8')
+                    # 작업이 성공했음을 알리고 원본의 코덱을 알려주고 새로이 바뀐 코덱도 알려준다.
+                    print(
+                        f'success! (original codec : {encoding} -> new codec : utf-8)')
                     break
                 except Exception as e:
                     print(f"{e}")   # 어떤 에러가 떴었는지 알려준다.
