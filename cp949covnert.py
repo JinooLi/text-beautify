@@ -41,5 +41,6 @@ def cp949toUTF8(path):
                         i += 2
 
 
-cp949toUTF8('./test.txt')
-# print(bytearray([63, 177]).decode('cp949'))
+if __name__ == '__main__':
+    cp949toUTF8(r'C:\Users\jinu1\Downloads\이영도 소설\드래곤라자 1~15 [완] - 이영도-1.txt')
+    # print(bytearray([63, 177]).decode('cp949'))

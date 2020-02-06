@@ -6,7 +6,7 @@
 
 import os   # 컴퓨터 내의 파일 입출력을 위해 import함
 import re   # 정규표현식(regular expression)을 사용하려고 import함
-import chardet  # 인코딩을 알아내기 위한 것이다.
+import cp949covnert
 
 
 def task(file_name, encoding):  # 기존 텍스트 파일을 편집한 텍스트를 새로운 텍스트 파일에 집어 넣는 함수.
@@ -26,7 +26,7 @@ def task(file_name, encoding):  # 기존 텍스트 파일을 편집한 텍스트
     # 정규 표현식 reg_exp_3는 문장 앞에 0개 이상의 띄어쓰기와 숫자 1~2개 그리고 온점이 있는 형식을 나타낸다.
     reg_exp_3 = re.compile("[ ]*[0-9]{1,2}[.].+")
 
-    # 정규 표현식 reg_exp_4는 엔터만 있는 형식을 나타낸다.
+    # 정규 표현식 reg_exp_4는 띄어쓰기 n개와 엔터 하나만 있는 형식을 나타낸다.
     reg_exp_4 = re.compile("[ ]*\n")
 
     for line in text_file.readlines():
